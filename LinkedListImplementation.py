@@ -115,7 +115,7 @@ class LinkedList(object):
         current = self.head
         previous = None
         while currentindex != index:
-            previous = None
+            previous = current
             current = current.getNext()
             currentindex += 1
         if previous == None:
@@ -124,8 +124,23 @@ class LinkedList(object):
         else:
             previous.setNext(current.getNext())
             return current.getData()
-        
     
-        
-        
-            
+    
+    def print(self):
+        current = self.head
+        while current:
+            print(current.getData())
+            current = current.getNext()
+
+# 1-> 2 -> 3 -> 5 -> None
+#  5 -> 3 -> 2 -> 1 -> None
+
+    def reverse(self):
+    	previous = None
+    	current = self.head
+    	while current:
+    		curr_next = current.next #Save the next node of current
+    		current.next = previous  #Set the next pointer of current to the previous node
+    		previous = current       #Set the current node as previous ode
+    		current = curr_next      #Set the current next node as current
+    	self.head  = previous        #Set the previous as self.head
